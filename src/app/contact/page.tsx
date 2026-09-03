@@ -143,31 +143,31 @@ function ContactPageContent() {
                     placeholder="+91 8708248561 / +1 (416)..."
                     value={formState.phone}
                     onChange={(e) => setFormState({ ...formState, phone: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl bg-black/5 dark:bg-white/5 border border-black/15 dark:border-white/15 text-sm text-black dark:text-white placeholder-black/30 dark:placeholder-white/30 focus:outline-none focus:border-neutral-400 focus:bg-black/10 dark:focus:bg-white/10 transition-colors"
+                    className="w-full px-4 py-3 rounded-xl bg-white dark:bg-white/5 border border-neutral-300 dark:border-white/15 text-sm text-neutral-900 dark:text-white placeholder-neutral-400 dark:placeholder-white/30 focus:outline-none focus:border-neutral-500 focus:bg-neutral-50 dark:focus:bg-white/10 transition-colors shadow-sm"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-mono uppercase tracking-wider text-black/80 dark:text-white/80 mb-1">
+                  <label className="block text-xs font-mono uppercase tracking-wider text-neutral-700 dark:text-neutral-300 mb-1 font-bold">
                     Service Required
                   </label>
                   <select
                     value={formState.service}
                     onChange={(e) => setFormState({ ...formState, service: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl bg-[#141414] border border-black/15 dark:border-white/15 text-sm text-black dark:text-white focus:outline-none focus:border-neutral-400"
+                    className="w-full px-4 py-3 rounded-xl bg-white dark:bg-neutral-900 border border-neutral-300 dark:border-white/15 text-sm text-neutral-900 dark:text-white focus:outline-none focus:border-neutral-500 shadow-sm cursor-pointer"
                   >
-                    <option value="Web Development">Full-Stack Web Development (from ₹15k)</option>
-                    <option value="AI Agents">AI Agent Development (Custom)</option>
-                    <option value="SEO Marketing">SEO & Growth Marketing (from ₹5k/mo)</option>
-                    <option value="Research Papers">Research Papers & Academic (₹10k–₹30k)</option>
-                    <option value="Content & Analytics">Content Writing & Funnels (₹2k/1k words)</option>
-                    <option value="Other">Other Custom End-to-End Project</option>
+                    <option value="Web Development" className="bg-white dark:bg-neutral-900 text-neutral-900 dark:text-white">Full-Stack Web Development (from ₹15k)</option>
+                    <option value="AI Agents" className="bg-white dark:bg-neutral-900 text-neutral-900 dark:text-white">AI Agent Development (Custom)</option>
+                    <option value="SEO Marketing" className="bg-white dark:bg-neutral-900 text-neutral-900 dark:text-white">SEO & Growth Marketing (from ₹5k/mo)</option>
+                    <option value="Research Papers" className="bg-white dark:bg-neutral-900 text-neutral-900 dark:text-white">Research Papers & Academic (₹10k–₹30k)</option>
+                    <option value="Content & Analytics" className="bg-white dark:bg-neutral-900 text-neutral-900 dark:text-white">Content Writing & Funnels (₹2k/1k words)</option>
+                    <option value="Other" className="bg-white dark:bg-neutral-900 text-neutral-900 dark:text-white">Other Custom End-to-End Project</option>
                   </select>
                 </div>
               </div>
 
               {/* Project Brief */}
               <div>
-                <label className="block text-xs font-mono uppercase tracking-wider text-black/80 dark:text-white/80 mb-1">
+                <label className="block text-xs font-mono uppercase tracking-wider text-neutral-700 dark:text-neutral-300 mb-1 font-bold">
                   Project Brief & Requirements
                 </label>
                 <textarea
@@ -175,7 +175,7 @@ function ContactPageContent() {
                   placeholder="Describe what you want built, desired timeline, target audience, or any specific integrations..."
                   value={formState.message}
                   onChange={(e) => setFormState({ ...formState, message: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl bg-black/5 dark:bg-white/5 border border-black/15 dark:border-white/15 text-sm text-black dark:text-white placeholder-black/30 dark:placeholder-white/30 focus:outline-none focus:border-neutral-400 focus:bg-black/10 dark:focus:bg-white/10 transition-colors resize-none"
+                  className="w-full px-4 py-3 rounded-xl bg-white dark:bg-white/5 border border-neutral-300 dark:border-white/15 text-sm text-neutral-900 dark:text-white placeholder-neutral-400 dark:placeholder-white/30 focus:outline-none focus:border-neutral-500 focus:bg-neutral-50 dark:focus:bg-white/10 transition-colors resize-none shadow-sm"
                 />
               </div>
 

@@ -45,10 +45,10 @@ export default function DeviceMockup({
         transform: `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
         transition: "transform 0.2s ease-out",
       }}
-      className="w-full rounded-2xl bg-[#111111] border border-black/20 dark:border-white/20 shadow-2xl shadow-black/80 overflow-hidden group"
+      className="w-full rounded-2xl bg-white dark:bg-[#111111] border border-neutral-200 dark:border-white/15 shadow-xl hover:shadow-2xl overflow-hidden group transition-all duration-300"
     >
       {/* Browser Chrome Header */}
-      <div className="bg-[#181818] border-b border-black/10 dark:border-white/10 px-4 py-3 flex items-center justify-between gap-4">
+      <div className="bg-neutral-100 dark:bg-[#181818] border-b border-neutral-200 dark:border-white/10 px-4 py-3 flex items-center justify-between gap-4">
         {/* Window controls */}
         <div className="flex items-center gap-1.5">
           <div className="w-3 h-3 rounded-full bg-red-500/80" />
@@ -57,32 +57,32 @@ export default function DeviceMockup({
         </div>
 
         {/* Address Bar */}
-        <div className="flex-1 max-w-md mx-auto flex items-center gap-2 px-3 py-1 rounded-lg bg-black/50 dark:bg-white/50 border border-black/10 dark:border-white/10 text-xs text-black/60 dark:text-white/60 font-mono">
-          <Lock size={10} className="text-neutral-600 dark:text-neutral-400" />
+        <div className="flex-1 max-w-md mx-auto flex items-center gap-2 px-3 py-1 rounded-lg bg-white dark:bg-black/50 border border-neutral-200 dark:border-white/10 text-xs text-neutral-600 dark:text-neutral-300 font-mono">
+          <Lock size={10} className="text-neutral-500 dark:text-neutral-400" />
           <span className="truncate">{url}</span>
         </div>
 
         {/* Badge or status */}
         {badge && (
-          <span className="font-mono text-[10px] px-2 py-0.5 rounded bg-neutral-400 text-neutral-600 dark:text-neutral-400 border border-neutral-400">
+          <span className="font-mono text-[10px] px-2 py-0.5 rounded-md bg-neutral-200 dark:bg-white/10 text-neutral-800 dark:text-neutral-200 border border-neutral-300 dark:border-white/10 font-medium">
             {badge}
           </span>
         )}
       </div>
 
       {/* Screen Body */}
-      <div className="relative min-h-[260px] sm:min-h-[320px] bg-[#0c0c0c] p-6 flex flex-col justify-between overflow-hidden">
+      <div className="relative min-h-[260px] sm:min-h-[320px] bg-neutral-50/80 dark:bg-[#0c0c0c] p-6 flex flex-col justify-between overflow-hidden">
         {children}
 
         {/* Optional overlay stats bar at bottom of mockup */}
         {stats && (
-          <div className="mt-4 pt-3 border-t border-black/10 dark:border-white/10 grid grid-cols-3 gap-2 text-center bg-black/40 dark:bg-white/40 -mx-6 -mb-6 p-4">
+          <div className="mt-4 pt-3 border-t border-neutral-200 dark:border-white/10 grid grid-cols-3 gap-2 text-center bg-white/95 dark:bg-black/60 -mx-6 -mb-6 p-4">
             {stats.map((st) => (
               <div key={st.label}>
-                <div className="font-mono text-sm font-bold text-neutral-600 dark:text-neutral-400">
+                <div className="font-mono text-sm font-bold text-neutral-950 dark:text-white">
                   {st.value}
                 </div>
-                <div className="text-[10px] font-mono text-black/50 dark:text-white/50 uppercase">
+                <div className="text-[10px] font-mono text-neutral-600 dark:text-neutral-400 uppercase font-semibold">
                   {st.label}
                 </div>
               </div>

@@ -167,19 +167,19 @@ export default function InteractiveConsultationModal() {
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-mono uppercase tracking-wider text-black/70 dark:text-white/70 mb-1">
+                  <label className="block text-xs font-mono uppercase tracking-wider text-neutral-700 dark:text-neutral-300 mb-1 font-bold">
                     Your Location / Market
                   </label>
                   <select
                     value={formData.country}
                     onChange={(e) => setFormData({ ...formData, country: e.target.value })}
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-[#1a1a1a] border border-black/15 dark:border-white/15 text-sm text-black dark:text-white focus:outline-none focus:border-neutral-400"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-white dark:bg-neutral-900 border border-neutral-300 dark:border-white/15 text-sm text-neutral-900 dark:text-white focus:outline-none focus:border-neutral-500 shadow-sm cursor-pointer"
                   >
-                    <option value="India">India (IST Timezone)</option>
-                    <option value="Canada">Canada (EST / PST)</option>
-                    <option value="USA">United States</option>
-                    <option value="UK / Europe">UK / Europe</option>
-                    <option value="Other">Other International</option>
+                    <option value="India" className="bg-white dark:bg-neutral-900 text-neutral-900 dark:text-white">India (IST Timezone)</option>
+                    <option value="Canada" className="bg-white dark:bg-neutral-900 text-neutral-900 dark:text-white">Canada (EST / PST)</option>
+                    <option value="USA" className="bg-white dark:bg-neutral-900 text-neutral-900 dark:text-white">United States</option>
+                    <option value="UK / Europe" className="bg-white dark:bg-neutral-900 text-neutral-900 dark:text-white">UK / Europe</option>
+                    <option value="Other" className="bg-white dark:bg-neutral-900 text-neutral-900 dark:text-white">Other International</option>
                   </select>
                 </div>
               </div>

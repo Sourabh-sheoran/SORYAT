@@ -157,59 +157,45 @@ export default function ServiceCard({ service, index }: { service: ServiceItem, 
   const { formatPrice, openBookingWithService } = useAgency();
   const Icon = service.icon;
   
-  const isWhiteKey = index % 2 === 0;
-
-return (
+  return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
       transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
       whileHover={{ y: -6, scale: 1.01 }}
-      className={`relative w-full h-full min-h-[600px] rounded-none sm:rounded-3xl border flex flex-col justify-between overflow-hidden transition-all duration-300 ${
-        isWhiteKey 
-          ? "bg-black/20 dark:bg-white backdrop-blur-3xl dark:backdrop-blur-none border-white/40 dark:border-white/20 text-white dark:text-black shadow-[inset_0_1px_1px_rgba(255,255,255,0.3),0_8px_32px_rgba(0,0,0,0.15)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.15)] hover:border-white/60 dark:hover:border-white" 
-          : "bg-white/20 dark:bg-black backdrop-blur-3xl dark:backdrop-blur-none border-white/50 dark:border-white/20 text-black dark:text-white shadow-[inset_0_1px_1px_rgba(255,255,255,0.6),0_8px_32px_rgba(0,0,0,0.1)] dark:shadow-[0_8px_32px_rgba(255,255,255,0.1)] hover:border-white/80 dark:hover:border-white"
-      }`}
+      className="relative w-full h-full min-h-[600px] rounded-2xl sm:rounded-3xl border border-neutral-200 dark:border-white/15 bg-white/95 dark:bg-[#0f1117]/90 text-neutral-900 dark:text-white backdrop-blur-2xl flex flex-col justify-between overflow-hidden transition-all duration-300 shadow-xl hover:shadow-2xl hover:border-neutral-400 dark:hover:border-white/30 group"
     >
       <div className="p-6 sm:p-8 flex flex-col h-full z-10">
         
         {/* Header */}
         <div className="flex items-center justify-between mb-6">
-          <span className={`font-mono text-[10px] uppercase tracking-[0.2em] font-bold px-3 py-1 rounded-md ${
-            isWhiteKey ? "bg-white/10 dark:bg-black/10 text-white/60 dark:text-black/60" : "bg-black/10 dark:bg-white/10 text-black/60 dark:text-white/60"
-          }`}>
+          <span className="font-mono text-[10px] uppercase tracking-[0.2em] font-bold px-3 py-1 rounded-md bg-neutral-100 dark:bg-white/10 text-neutral-800 dark:text-neutral-200 border border-neutral-200 dark:border-white/10">
             {service.category}
           </span>
-          <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${
-            isWhiteKey ? "bg-white dark:bg-black text-black dark:text-white" : "bg-black dark:bg-white text-white dark:text-black"
-          }`}>
+          <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-neutral-900 dark:bg-white text-white dark:text-neutral-950 shadow-md">
             <Icon size={24} />
           </div>
         </div>
 
         {/* Title & Tagline */}
-        <h3 className="text-2xl font-bold leading-tight mb-2" style={{ fontFamily: "var(--font-instrument), serif" }}>
+        <h3 className="text-2xl font-bold leading-tight mb-2 text-neutral-950 dark:text-white" style={{ fontFamily: "var(--font-instrument), serif" }}>
           {service.title}
         </h3>
-        <p className={`text-sm leading-relaxed mb-6 ${
-          isWhiteKey ? "text-white/70 dark:text-black/70" : "text-black/70 dark:text-white/70"
-        }`}>
+        <p className="text-sm leading-relaxed mb-6 text-neutral-700 dark:text-neutral-300 font-normal">
           {service.tagline}
         </p>
 
         {/* Deliverables List */}
         <div className="flex-grow">
-          <div className={`text-[10px] font-mono uppercase tracking-wider font-semibold mb-3 ${
-            isWhiteKey ? "text-white/50 dark:text-black/50" : "text-black/50 dark:text-white/50"
-          }`}>
+          <div className="text-[10px] font-mono uppercase tracking-wider font-bold mb-3 text-neutral-900 dark:text-neutral-400">
             Key Deliverables
           </div>
           <ul className="space-y-2 text-xs">
             {service.deliverables.map((d, i) => (
-              <li key={i} className="flex items-start gap-2">
-                <span className="font-bold shrink-0 mt-0.5">✓</span>
-                <span className="leading-snug opacity-90">{d}</span>
+              <li key={i} className="flex items-start gap-2 text-neutral-800 dark:text-neutral-200">
+                <span className="font-bold shrink-0 mt-0.5 text-emerald-600 dark:text-emerald-400">✓</span>
+                <span className="leading-snug">{d}</span>
               </li>
             ))}
           </ul>
@@ -221,9 +207,7 @@ return (
             {service.techStack.map((tech) => (
               <span
                 key={tech}
-                className={`px-2 py-1 rounded-md text-[10px] font-mono font-medium border ${
-                  isWhiteKey ? "bg-white/5 dark:bg-black/5 border-white/10 dark:border-black/10 text-white/80 dark:text-black/80" : "bg-black/5 dark:bg-white/5 border-black/10 dark:border-white/10 text-black/80 dark:text-white/80"
-                }`}
+                className="px-2 py-1 rounded-md text-[10px] font-mono font-medium border bg-neutral-100 dark:bg-white/5 border-neutral-300 dark:border-white/10 text-neutral-800 dark:text-neutral-200"
               >
                 {tech}
               </span>
@@ -232,27 +216,21 @@ return (
         </div>
 
         {/* Footer CTAs */}
-        <div className={`pt-4 border-t flex flex-col gap-3 ${
-          isWhiteKey ? "border-white/10 dark:border-black/10" : "border-black/10 dark:border-white/10"
-        }`}>
+        <div className="pt-4 border-t border-neutral-200 dark:border-white/10 flex flex-col gap-3">
           <div className="flex items-end justify-between">
             <div>
-              <div className={`text-[10px] font-mono uppercase tracking-wider font-semibold ${
-                isWhiteKey ? "text-white/50 dark:text-black/50" : "text-black/50 dark:text-white/50"
-              }`}>
+              <div className="text-[10px] font-mono uppercase tracking-wider font-semibold text-neutral-600 dark:text-neutral-400">
                 Starting Investment
               </div>
-              <div className="text-lg font-bold font-mono">
+              <div className="text-lg font-bold font-mono text-neutral-950 dark:text-white">
                 {formatPrice(service.startingInr)}
-                <span className="text-xs font-normal opacity-60 ml-1">
+                <span className="text-xs font-normal text-neutral-500 dark:text-neutral-400 ml-1">
                   {service.id === "seo-marketing" ? "/mo" : service.id === "content-writing" ? "/1k words" : ""}
                 </span>
               </div>
             </div>
             
-            <div className={`flex items-center gap-1 text-[10px] font-mono uppercase tracking-wider font-bold ${
-              isWhiteKey ? "text-white/60 dark:text-black/60" : "text-black/60 dark:text-white/60"
-            }`}>
+            <div className="flex items-center gap-1 text-[10px] font-mono uppercase tracking-wider font-bold text-emerald-600 dark:text-emerald-400">
               <ShieldCheck size={14} className="mb-0.5" />
               Demo First
             </div>
@@ -261,17 +239,13 @@ return (
           <div className="flex items-center gap-2 mt-2">
             <Link
               href={service.slug}
-              className={`flex-1 py-3 rounded-xl border text-center text-xs font-bold transition-colors ${
-                isWhiteKey ? "bg-transparent border-white/20 dark:border-black/20 text-white dark:text-black hover:bg-white/10 dark:hover:bg-black/10" : "bg-transparent border-black/20 dark:border-white/20 text-black dark:text-white hover:bg-black/5 dark:hover:bg-white/5"
-              }`}
+              className="flex-1 py-3 rounded-xl border border-neutral-300 dark:border-white/20 text-center text-xs font-bold text-neutral-900 dark:text-white bg-transparent hover:bg-neutral-100 dark:hover:bg-white/10 transition-colors"
             >
               Deep Dive
             </Link>
             <button
               onClick={(e) => { e.preventDefault(); openBookingWithService(service.title); }}
-              className={`flex-1 py-3 rounded-xl text-center text-xs font-bold transition-all flex items-center justify-center gap-2 ${
-                isWhiteKey ? "bg-white dark:bg-black text-black dark:text-white hover:bg-white/90 dark:hover:bg-black/90" : "bg-black dark:bg-white text-white dark:text-black hover:bg-black/90 dark:hover:bg-white/90"
-              }`}
+              className="flex-1 py-3 rounded-xl text-center text-xs font-bold transition-all flex items-center justify-center gap-2 bg-neutral-900 dark:bg-white text-white dark:text-neutral-950 hover:bg-black dark:hover:bg-neutral-100 shadow-md cursor-pointer"
             >
               <span>Kickstart Demo</span>
               <ArrowRight size={14} />

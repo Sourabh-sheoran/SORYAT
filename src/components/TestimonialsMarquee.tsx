@@ -87,18 +87,15 @@ export default function TestimonialsMarquee() {
         {marqueeItems.map((item, idx) => (
           <div
             key={idx}
-            className="w-[350px] shrink-0 p-6 sm:p-7 rounded-3xl bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 hover:border-black/20 dark:border-white/20 backdrop-blur-xl transition-all duration-300 flex flex-col justify-between shadow-xl shadow-black/40 relative overflow-hidden group"
+            className="w-[350px] shrink-0 p-6 sm:p-7 rounded-3xl bg-white/90 dark:bg-white/5 border border-neutral-200 dark:border-white/10 hover:border-neutral-400 dark:hover:border-white/20 backdrop-blur-xl transition-all duration-300 flex flex-col justify-between shadow-lg relative overflow-hidden group"
           >
-            {/* Top Glow on hover */}
-            <div className="absolute top-0 right-0 w-24 h-24 bg-neutral-400 rounded-full blur-xl group-hover:bg-neutral-400 transition-colors" />
-
             <div>
               {/* Service & Rating Header */}
               <div className="flex items-center justify-between mb-4">
-                <span className="font-mono text-[10px] uppercase tracking-wider text-neutral-600 dark:text-neutral-400 font-semibold px-2 py-0.5 rounded bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10">
+                <span className="font-mono text-[10px] uppercase tracking-wider text-neutral-700 dark:text-neutral-300 font-semibold px-2.5 py-0.5 rounded-md bg-neutral-100 dark:bg-white/10 border border-neutral-200 dark:border-white/10">
                   {item.service}
                 </span>
-                <div className="flex items-center gap-1 text-yellow-400">
+                <div className="flex items-center gap-1 text-amber-500 dark:text-yellow-400">
                   {[...Array(item.rating)].map((_, i) => (
                     <Star key={i} size={13} fill="currentColor" />
                   ))}
@@ -106,26 +103,26 @@ export default function TestimonialsMarquee() {
               </div>
 
               {/* Quote */}
-              <p className="text-sm text-black/80 dark:text-white/80 leading-relaxed italic mb-6">
+              <p className="text-sm text-neutral-800 dark:text-neutral-200 leading-relaxed italic mb-6">
                 &ldquo;{item.quote}&rdquo;
               </p>
             </div>
 
             {/* Author Profile */}
-            <div className="pt-4 border-t border-black/10 dark:border-white/10 flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-neutral-400 to-neutral-500 flex items-center justify-center text-xs font-bold text-black shrink-0">
+            <div className="pt-4 border-t border-neutral-200 dark:border-white/10 flex items-center gap-3">
+              <div className="w-10 h-10 rounded-full bg-neutral-200 dark:bg-white/10 text-neutral-900 dark:text-white flex items-center justify-center text-xs font-bold shrink-0">
                 {item.avatar}
               </div>
               <div className="min-w-0">
-                <div className="text-sm font-medium text-black dark:text-white flex items-center gap-1.5">
+                <div className="text-sm font-semibold text-neutral-900 dark:text-white flex items-center gap-1.5">
                   <span className="truncate">{item.name}</span>
-                  <ShieldCheck size={13} className="text-neutral-600 dark:text-neutral-400 shrink-0" />
+                  <ShieldCheck size={13} className="text-emerald-600 dark:text-emerald-400 shrink-0" />
                 </div>
-                <div className="text-[11px] text-black/60 dark:text-white/60 truncate">
+                <div className="text-[11px] text-neutral-600 dark:text-neutral-400 truncate">
                   {item.role}, {item.company}
                 </div>
-                <div className="text-[10px] font-mono text-black/40 dark:text-white/40 flex items-center gap-1 mt-0.5">
-                  <MapPin size={10} className="text-neutral-600 dark:text-neutral-400" />
+                <div className="text-[10px] font-mono text-neutral-500 dark:text-neutral-400 flex items-center gap-1 mt-0.5">
+                  <MapPin size={10} className="text-neutral-500 dark:text-neutral-400" />
                   <span>{item.location}</span>
                 </div>
               </div>

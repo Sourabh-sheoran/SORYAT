@@ -69,13 +69,54 @@ const STATS = [
   { label: "Global Presence", value: "India & Canada", detail: "24/7 Timezone Overlap" },
 ];
 
+const AwsLogo = () => (
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+    <path d="M6.5 7.8c-.9 0-1.7.3-2.3.9-.6.6-.9 1.4-.9 2.4s.3 1.8.9 2.4c.6.6 1.4.9 2.3.9.9 0 1.7-.3 2.3-.9.6-.6.9-1.4.9-2.4s-.3-1.8-.9-2.4c-.6-.6-1.4-.9-2.3-.9z" fill="#FF9900" />
+    <path d="M19.2 17.8c-3.5 2.1-8.1 2.5-12.2 1.2-.6-.2-.9-.8-.5-1.3.3-.5.9-.6 1.4-.4 3.5 1.1 7.4.8 10.4-1 .5-.3 1.1-.1 1.4.4.3.5.1 1.1-.4 1.4z" fill="#FF9900" />
+    <path d="M20.5 15.6c-.3-.5-1.5-.2-2.2-.1-.2 0-.4-.3-.4-.5.4-1.1 1.1-2.1 1.7-2.3.5-.1.8.3.8.9 0 .8-.1 1.8.1 2z" fill="#FF9900" />
+  </svg>
+);
+
+const GoogleCloudLogo = () => (
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+    <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z" fill="#4285F4"/>
+    <path d="M19 18H6c-2.21 0-4-1.79-4-4 0-2.05 1.53-3.76 3.56-3.97l1.07-.11.5-.95C8.08 7.14 9.94 6 12 6c2.62 0 4.88 1.86 5.39 4.43l.3 1.5 1.53.11c1.56.1 2.78 1.41 2.78 2.96 0 1.65-1.35 3-3 3z" fill="#EA4335" opacity="0.3"/>
+  </svg>
+);
+
+const IeeeLogo = () => (
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+    <rect width="24" height="24" rx="6" fill="#00629B"/>
+    <text x="12" y="15" fill="#ffffff" fontSize="7.5" fontWeight="bold" fontFamily="monospace" textAnchor="middle" letterSpacing="0.5">IEEE</text>
+  </svg>
+);
+
+const VercelLogo = () => (
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" className="text-neutral-900 dark:text-white">
+    <path d="M12 2L24 22H0L12 2Z"/>
+  </svg>
+);
+
+const MetaLogo = () => (
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+    <path d="M16.9 4C14.7 4 12.8 5.2 12 7 11.2 5.2 9.3 4 7.1 4 3.7 4 1 6.8 1 10.3c0 4.4 4.5 8.7 10 11.7 5.5-3 10-7.3 10-11.7C21 6.8 18.3 4 16.9 4zm-7.6 9.3c-1.3 1.8-3.1 2.9-4.8 2.9-2.1 0-3.6-1.5-3.6-3.7 0-2.3 1.8-4.2 4.1-4.2 1.6 0 3.1.9 4.3 2.6l.8 1.2-.8 1.2zm5.4 0l-.8-1.2c1.2-1.7 2.7-2.6 4.3-2.6 2.3 0 4.1 1.9 4.1 4.2 0 2.2-1.5 3.7-3.6 3.7-1.7 0-3.5-1.1-4.8-2.9l.8-1.2z" fill="#0081FB"/>
+  </svg>
+);
+
+const TurnitinLogo = () => (
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+    <rect width="24" height="24" rx="6" fill="#D9381E"/>
+    <path d="M12 5L6 8v5c0 4.2 2.6 7.5 6 8.5 3.4-1 6-4.3 6-8.5V8l-6-3zm-1 12l-3-3 1.4-1.4 1.6 1.6 4.6-4.6 1.4 1.4-6 6z" fill="#ffffff"/>
+  </svg>
+);
+
 const CERTIFICATIONS = [
-  { name: "AWS Certified Solutions Architect", issuer: "Amazon Web Services" },
-  { name: "Google Cloud Professional ML Engineer", issuer: "Google Cloud" },
-  { name: "IEEE Senior Member Scholarly Review", issuer: "IEEE Publications" },
-  { name: "Vercel Next.js Enterprise Verified", issuer: "Vercel Ecosystem" },
-  { name: "Meta Certified Digital Marketing Strategist", issuer: "Meta Blueprint" },
-  { name: "Turnitin Integrity Verified Partner", issuer: "Academic Standards" },
+  { name: "AWS Certified Solutions Architect", issuer: "Amazon Web Services", logo: AwsLogo },
+  { name: "Google Cloud Professional ML Engineer", issuer: "Google Cloud", logo: GoogleCloudLogo },
+  { name: "IEEE Senior Member Scholarly Review", issuer: "IEEE Publications", logo: IeeeLogo },
+  { name: "Vercel Next.js Enterprise Verified", issuer: "Vercel Ecosystem", logo: VercelLogo },
+  { name: "Meta Certified Digital Marketing Strategist", issuer: "Meta Blueprint", logo: MetaLogo },
+  { name: "Turnitin Integrity Verified Partner", issuer: "Academic Standards", logo: TurnitinLogo },
 ];
 
 export default function AboutPage() {
@@ -241,20 +282,23 @@ export default function AboutPage() {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {CERTIFICATIONS.map((cert) => (
-            <div
-              key={cert.name}
-              className="p-4 rounded-2xl bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 flex items-center gap-3"
-            >
-              <div className="w-9 h-9 rounded-xl bg-neutral-400 border border-neutral-400 text-neutral-600 dark:text-neutral-400 flex items-center justify-center shrink-0">
-                <CheckCircle2 size={18} />
+          {CERTIFICATIONS.map((cert) => {
+            const LogoComponent = cert.logo;
+            return (
+              <div
+                key={cert.name}
+                className="p-4 rounded-2xl bg-white/95 dark:bg-white/5 border border-neutral-200 dark:border-white/10 flex items-center gap-3.5 shadow-sm hover:shadow-md transition-shadow"
+              >
+                <div className="w-10 h-10 rounded-xl bg-neutral-100 dark:bg-white/10 border border-neutral-200 dark:border-white/10 flex items-center justify-center shrink-0 shadow-inner">
+                  <LogoComponent />
+                </div>
+                <div>
+                  <div className="text-xs font-bold text-neutral-950 dark:text-white leading-snug">{cert.name}</div>
+                  <div className="text-[10px] font-mono text-neutral-600 dark:text-neutral-400 font-semibold">{cert.issuer}</div>
+                </div>
               </div>
-              <div>
-                <div className="text-xs font-semibold text-black dark:text-white">{cert.name}</div>
-                <div className="text-[10px] font-mono text-black/50 dark:text-white/50">{cert.issuer}</div>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </section>
 

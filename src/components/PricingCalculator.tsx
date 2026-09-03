@@ -134,38 +134,37 @@ export default function PricingCalculator() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.8, ease: "easeOut" }}
-      className="w-full rounded-3xl bg-white/20 dark:bg-white/5 border border-white/50 dark:border-white/15 p-6 sm:p-10 backdrop-blur-3xl shadow-[inset_0_1px_1px_rgba(255,255,255,0.6),0_8px_32px_rgba(0,0,0,0.1)] dark:shadow-2xl relative overflow-hidden"
+      className="w-full rounded-3xl bg-white/95 dark:bg-[#0f1117]/90 border border-neutral-200 dark:border-white/15 p-6 sm:p-10 backdrop-blur-2xl shadow-xl relative overflow-hidden text-neutral-900 dark:text-white"
     >
       {/* Background ambient lighting */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-white/20 dark:bg-white/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-white/20 dark:bg-white/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500/5 dark:bg-white/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-500/5 dark:bg-white/5 rounded-full blur-3xl pointer-events-none" />
 
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
         <div>
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/10 dark:bg-white/10 border border-black/15 dark:border-white/15 text-neutral-600 dark:text-neutral-400 font-mono text-[11px] uppercase tracking-wider mb-2">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-neutral-100 dark:bg-white/10 border border-neutral-200 dark:border-white/15 text-neutral-700 dark:text-neutral-300 font-mono text-[11px] uppercase tracking-wider mb-2">
             <Calculator size={13} />
             <span>Interactive Investment Estimator</span>
           </div>
-          <h3 className="text-2xl sm:text-3xl font-medium text-black dark:text-white">
-            Transparent Pricing. No Surprise Invoices.
+          <h3 className="text-2xl sm:text-3xl font-bold text-neutral-950 dark:text-white">
+            Custom Project Scope & Pricing Calculator
           </h3>
-          <p className="text-sm text-black/70 dark:text-white/70 max-w-xl mt-1">
-            Configure your exact scope below. Pay only <strong className="text-black dark:text-white">₹3,000 advance</strong> to build and inspect the live working demo before committing to the full balance.
+          <p className="text-sm text-neutral-600 dark:text-neutral-400 max-w-xl mt-1">
+            Configure deliverables and add-ons in real time. We never ask for full upfront commitment—just ₹3,000 to launch development.
           </p>
         </div>
 
         {/* Currency Switcher */}
-        <div className="flex items-center gap-2 self-start md:self-auto bg-black/10 dark:bg-white/10 p-1 rounded-xl border border-black/15 dark:border-white/15">
-          <span className="text-xs font-mono text-black/60 dark:text-white/60 px-2">Currency:</span>
+        <div className="flex items-center gap-1 bg-neutral-100 dark:bg-white/10 p-1 rounded-xl border border-neutral-200 dark:border-white/10 shrink-0">
           {(["INR", "USD", "CAD"] as const).map((curr) => (
             <button
               key={curr}
               onClick={() => setCurrency(curr)}
-              className={`px-2.5 py-1 text-xs font-mono rounded-lg transition-all ${
+              className={`px-3 py-1 text-xs font-mono rounded-lg transition-all cursor-pointer ${
                 currency === curr
-                  ? "bg-white text-black font-bold shadow-md"
-                  : "text-black/70 dark:text-white/70 hover:text-black dark:text-white"
+                  ? "bg-neutral-900 dark:bg-white text-white dark:text-neutral-950 font-bold shadow-sm"
+                  : "text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white"
               }`}
             >
               {curr === "INR" ? "₹ INR" : curr === "USD" ? "$ USD" : "CA$ CAD"}
@@ -175,42 +174,46 @@ export default function PricingCalculator() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-        {/* Left Column: Scope & Controls (7 Cols) */}
+        {/* Left Column: Configurator Controls (7 Cols) */}
         <div className="lg:col-span-7 space-y-6">
-          {/* Service Picker */}
+          {/* 1. Select Core Service Tier */}
           <div>
-            <label className="block text-xs font-mono uppercase tracking-wider text-black/80 dark:text-white/80 mb-2">
-              1. Choose Service Domain
+            <label className="block text-xs font-mono uppercase tracking-wider text-neutral-700 dark:text-neutral-300 mb-2 font-bold">
+              1. Choose Service Architecture
             </label>
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-              {Object.values(PRICING_TIERS).map((tier) => (
-                <motion.button
-                  key={tier.id}
-                  whileTap={{ scale: 0.97 }}
-                  onClick={() => handleServiceChange(tier.id)}
-                  className={`p-3 rounded-2xl text-left border transition-all ${
-                    selectedServiceId === tier.id
-                      ? "bg-white/60 dark:bg-white text-black font-semibold border-white dark:border-white shadow-lg shadow-white/10"
-                      : "bg-white/20 dark:bg-white/5 border-white/40 dark:border-white/10 text-black/80 dark:text-white/80 hover:bg-white/40 dark:hover:bg-white/10 backdrop-blur-md"
-                  }`}
-                >
-                  <div className="text-xs font-medium line-clamp-1">{tier.name}</div>
-                  <div className="font-mono text-[10px] opacity-70 mt-1">
-                    from {formatPrice(tier.basePriceInr)}
-                  </div>
-                </motion.button>
-              ))}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+              {Object.keys(PRICING_TIERS).map((key) => {
+                const isSelected = selectedServiceId === key;
+                return (
+                  <button
+                    key={key}
+                    type="button"
+                    onClick={() => handleServiceChange(key)}
+                    className={`p-3 rounded-2xl border text-left transition-all cursor-pointer ${
+                      isSelected
+                        ? "bg-neutral-900 dark:bg-white text-white dark:text-neutral-950 border-neutral-900 dark:border-white shadow-md"
+                        : "bg-neutral-100 dark:bg-white/5 border-neutral-200 dark:border-white/10 text-neutral-700 dark:text-neutral-300 hover:border-neutral-400"
+                    }`}
+                  >
+                    <div className="text-xs font-bold leading-tight">
+                      {PRICING_TIERS[key].name}
+                    </div>
+                    <div className={`text-[11px] font-mono mt-1 ${isSelected ? "text-neutral-300 dark:text-neutral-700" : "text-neutral-500 dark:text-neutral-400"}`}>
+                      from {formatPrice(PRICING_TIERS[key].basePriceInr)}
+                    </div>
+                  </button>
+                );
+              })}
             </div>
           </div>
 
-          {/* Scope Slider */}
-          <div className="p-5 rounded-2xl bg-white/20 dark:bg-white/5 border border-white/40 dark:border-white/10 backdrop-blur-md">
+          {/* 2. Interactive Slider for Units */}
+          <div className="p-5 rounded-2xl bg-neutral-50 dark:bg-white/5 border border-neutral-200/80 dark:border-white/10">
             <div className="flex items-center justify-between mb-3">
-              <label className="text-xs font-mono uppercase tracking-wider text-black/80 dark:text-white/80 flex items-center gap-1.5">
-                <Sliders size={13} className="text-neutral-600 dark:text-neutral-400" />
-                <span>2. Scope Volume ({currentTier.unit})</span>
+              <label className="text-xs font-mono uppercase tracking-wider text-neutral-700 dark:text-neutral-300 font-bold">
+                2. Scope Volume ({currentTier.unit})
               </label>
-              <span className="font-mono text-base font-bold text-neutral-600 dark:text-neutral-400">
+              <span className="font-mono text-base font-bold text-neutral-950 dark:text-white px-2.5 py-0.5 rounded-lg bg-neutral-200 dark:bg-white/10 border border-neutral-300 dark:border-white/10">
                 {units} {currentTier.unit}
               </span>
             </div>
@@ -220,21 +223,20 @@ export default function PricingCalculator() {
               min={currentTier.minUnits}
               max={currentTier.maxUnits}
               value={units}
-              onChange={(e) => setUnits(parseInt(e.target.value))}
-              className="w-full h-2 bg-black/20 dark:bg-white/20 rounded-lg appearance-none cursor-pointer accent-neutral-400"
+              onChange={(e) => setUnits(Number(e.target.value))}
+              className="w-full h-2 bg-neutral-200 dark:bg-neutral-800 rounded-lg appearance-none cursor-pointer accent-neutral-900 dark:accent-white"
             />
 
-            <div className="flex justify-between text-[10px] font-mono text-black/40 dark:text-white/40 mt-2">
-              <span>Min: {currentTier.minUnits}</span>
-              <span>Baseline: {currentTier.defaultUnits}</span>
-              <span>Max: {currentTier.maxUnits}</span>
+            <div className="flex justify-between text-[10px] font-mono text-neutral-500 dark:text-neutral-400 mt-2">
+              <span>Min: {currentTier.minUnits} {currentTier.unit.toLowerCase()}</span>
+              <span>Max: {currentTier.maxUnits} {currentTier.unit.toLowerCase()}</span>
             </div>
           </div>
 
-          {/* Add-ons Checklist */}
+          {/* 3. Optional Add-ons Toggle Grid */}
           <div>
-            <label className="block text-xs font-mono uppercase tracking-wider text-black/80 dark:text-white/80 mb-2">
-              3. Optional High-Impact Add-ons
+            <label className="block text-xs font-mono uppercase tracking-wider text-neutral-700 dark:text-neutral-300 mb-2 font-bold">
+              3. Optional High-Impact Add-Ons
             </label>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
               {ADDONS.map((addon) => {
@@ -244,25 +246,25 @@ export default function PricingCalculator() {
                     key={addon.id}
                     whileTap={{ scale: 0.98 }}
                     onClick={() => toggleAddon(addon.id)}
-                    className={`p-3 rounded-2xl border transition-all cursor-pointer flex items-center justify-between gap-2 backdrop-blur-md ${
+                    className={`p-3 rounded-2xl border transition-all cursor-pointer flex items-center justify-between gap-2 shadow-sm ${
                       isSelected
-                        ? "bg-white/60 dark:bg-white border-white/60 dark:border-white text-black"
-                        : "bg-white/20 dark:bg-white/5 border-white/40 dark:border-white/10 text-black/70 dark:text-white/70 hover:bg-white/40 dark:hover:bg-white/10"
+                        ? "bg-neutral-900 dark:bg-white text-white dark:text-neutral-950 border-neutral-900 dark:border-white shadow-md"
+                        : "bg-neutral-100 dark:bg-white/5 border-neutral-200 dark:border-white/10 text-neutral-800 dark:text-neutral-200 hover:bg-neutral-200 dark:hover:bg-white/10"
                     }`}
                   >
                     <div className="flex items-center gap-2.5 min-w-0">
                       <div
                         className={`w-5 h-5 rounded-md flex items-center justify-center border shrink-0 ${
                           isSelected
-                            ? "bg-black text-white border-black"
-                            : "border-black/30 dark:border-white/30 bg-black/5 dark:bg-white/5"
+                            ? "bg-white text-neutral-950 dark:bg-neutral-950 dark:text-white border-white dark:border-neutral-950"
+                            : "border-neutral-400 dark:border-white/30 bg-white dark:bg-black/30"
                         }`}
                       >
                         {isSelected && <Check size={12} strokeWidth={3} />}
                       </div>
-                      <span className="text-xs font-medium truncate">{addon.name}</span>
+                      <span className="text-xs font-semibold truncate">{addon.name}</span>
                     </div>
-                    <span className="font-mono text-xs text-neutral-600 dark:text-neutral-400 font-semibold shrink-0">
+                    <span className={`font-mono text-xs font-bold shrink-0 ${isSelected ? "text-neutral-200 dark:text-neutral-800" : "text-neutral-700 dark:text-neutral-300"}`}>
                       +{formatPrice(addon.priceInr)}
                     </span>
                   </motion.div>
@@ -275,75 +277,77 @@ export default function PricingCalculator() {
         {/* Right Column: Quote Summary Card (5 Cols) */}
         <motion.div
           layout
-          className="lg:col-span-5 p-6 sm:p-7 rounded-3xl bg-gradient-to-b from-white/10 to-white/5 border border-black/20 dark:border-white/20 backdrop-blur-2xl shadow-2xl flex flex-col justify-between"
+          className="lg:col-span-5 p-6 sm:p-7 rounded-3xl bg-neutral-50 dark:bg-white/5 border border-neutral-200 dark:border-white/15 backdrop-blur-2xl shadow-xl flex flex-col justify-between"
         >
           <div>
-            <div className="flex items-center justify-between pb-4 border-b border-black/10 dark:border-white/10 mb-4">
-              <span className="font-mono text-xs uppercase tracking-wider text-black/60 dark:text-white/60">
+            <div className="flex items-center justify-between pb-4 border-b border-neutral-200 dark:border-white/10 mb-4">
+              <span className="font-mono text-xs uppercase tracking-wider text-neutral-600 dark:text-neutral-400 font-bold">
                 Estimated Total Quote
               </span>
-              <span className="px-2 py-0.5 rounded bg-black/10 dark:bg-white/10 text-black/90 dark:text-white/90 font-mono text-[10px] border border-black/15 dark:border-white/15">
+              <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-mono text-[10px] font-bold border border-emerald-500/20">
                 Demo-First Policy
               </span>
             </div>
 
             {/* Total Price Display */}
             <div className="mb-4">
-              <div className="text-3xl sm:text-4xl font-mono font-bold text-black dark:text-white tracking-tight">
+              <div className="text-3xl sm:text-4xl font-mono font-bold text-neutral-950 dark:text-white tracking-tight">
                 {formatPrice(calculatedTotal)}
               </div>
-              <p className="text-xs text-black/60 dark:text-white/60 mt-1">
+              <p className="text-xs text-neutral-600 dark:text-neutral-400 mt-1">
                 Estimated all-inclusive project cost for {units} {currentTier.unit.toLowerCase()}.
               </p>
             </div>
 
             {/* Crucial Breakdown Details */}
-            <div className="space-y-2.5 p-4 rounded-2xl bg-black/40 dark:bg-white/40 border border-black/10 dark:border-white/10 text-xs mb-6">
-              <div className="flex justify-between items-center text-black/80 dark:text-white/80">
-                <span className="text-black/60 dark:text-white/60">Starting Advance to Kick Off:</span>
-                <span className="font-mono font-bold text-neutral-600 dark:text-neutral-400 text-sm">
+            <div className="space-y-2.5 p-4 rounded-2xl bg-white dark:bg-black/40 border border-neutral-200 dark:border-white/10 text-xs mb-6 shadow-sm">
+              <div className="flex justify-between items-center">
+                <span className="text-neutral-600 dark:text-neutral-400 font-medium">Starting Advance to Kick Off:</span>
+                <span className="font-mono font-bold text-emerald-600 dark:text-emerald-400 text-sm">
                   {formatPrice(3000)}
                 </span>
               </div>
-              <div className="flex justify-between items-center text-black/80 dark:text-white/80">
-                <span className="text-black/60 dark:text-white/60">Balance on Demo Approval:</span>
-                <span className="font-mono font-semibold text-black dark:text-white">
+              <div className="flex justify-between items-center">
+                <span className="text-neutral-600 dark:text-neutral-400 font-medium">Balance on Demo Approval:</span>
+                <span className="font-mono font-semibold text-neutral-950 dark:text-white">
                   {formatPrice(calculatedTotal - 3000)}
                 </span>
               </div>
-              <div className="flex justify-between items-center text-black/80 dark:text-white/80 border-t border-black/10 dark:border-white/10 pt-2">
-                <span className="text-black/60 dark:text-white/60 flex items-center gap-1">
-                  <Clock size={12} className="text-neutral-600 dark:text-neutral-400" />
+              <div className="flex justify-between items-center border-t border-neutral-200 dark:border-white/10 pt-2">
+                <span className="text-neutral-600 dark:text-neutral-400 flex items-center gap-1 font-medium">
+                  <Clock size={12} className="text-neutral-500 dark:text-neutral-400" />
                   Estimated Turnaround:
                 </span>
-                <span className="font-mono font-semibold text-neutral-600 dark:text-neutral-400">
+                <span className="font-mono font-semibold text-neutral-900 dark:text-neutral-200">
                   {currentTier.turnaroundDays}
                 </span>
               </div>
-              <div className="flex justify-between items-center text-black/80 dark:text-white/80">
-                <span className="text-black/60 dark:text-white/60">Post-Launch Warranty:</span>
-                <span className="font-mono font-semibold text-neutral-600 dark:text-neutral-400">
-                  30 Days Free
-                </span>
+            </div>
+
+            {/* Perks included */}
+            <div className="space-y-1.5 text-xs text-neutral-700 dark:text-neutral-300 font-medium mb-6">
+              <div className="flex items-center gap-2">
+                <span className="text-emerald-600 dark:text-emerald-400 font-bold">✓</span>
+                <span>Working prototype deployed on live URL</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-emerald-600 dark:text-emerald-400 font-bold">✓</span>
+                <span>Free revisions until 100% demo satisfaction</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-emerald-600 dark:text-emerald-400 font-bold">✓</span>
+                <span>30-day post-launch technical warranty</span>
               </div>
             </div>
           </div>
 
-          {/* Action Trigger */}
-          <div className="space-y-3">
-            <motion.button
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              onClick={() => openBookingWithService(`${currentTier.name} (${units} ${currentTier.unit})`)}
-              className="w-full py-3.5 rounded-full bg-black dark:bg-white text-white dark:text-black font-semibold hover:bg-black/90 dark:hover:bg-white/90 transition-all flex items-center justify-center gap-2 shadow-xl shadow-black/10 dark:shadow-white/10 text-sm"
-            >
-              <span>Kickstart Demo with {formatPrice(3000)}</span>
-              <ArrowRight size={16} />
-            </motion.button>
-            <div className="text-center font-mono text-[10px] text-black/50 dark:text-white/50">
-              ✓ Free revisions until you approve the demo • Fully refundable
-            </div>
-          </div>
+          <button
+            onClick={() => openBookingWithService(`${currentTier.name} (Estimate: ${formatPrice(calculatedTotal)})`)}
+            className="w-full py-4 rounded-full bg-neutral-900 dark:bg-white text-white dark:text-neutral-950 font-bold text-xs sm:text-sm flex items-center justify-center gap-2 hover:bg-black dark:hover:bg-neutral-100 transition-all shadow-xl cursor-pointer"
+          >
+            <span>Kickstart Demo with {formatPrice(3000)}</span>
+            <ArrowRight size={14} />
+          </button>
         </motion.div>
       </div>
     </motion.div>
