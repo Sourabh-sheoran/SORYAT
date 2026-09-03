@@ -104,12 +104,12 @@ export default function HowItWorksTimeline() {
       className="w-full"
     >
       {/* Top Banner Notice */}
-      <div className="p-4 rounded-2xl bg-neutral-400 border border-neutral-400 backdrop-blur-md mb-12 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div className="p-4 rounded-2xl bg-emerald-500/10 dark:bg-emerald-500/15 border border-emerald-500/25 dark:border-emerald-500/30 backdrop-blur-md mb-12 flex flex-col sm:flex-row items-center justify-between gap-4">
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-full bg-neutral-400 text-neutral-600 dark:text-neutral-400 flex items-center justify-center shrink-0">
+          <div className="w-8 h-8 rounded-full bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shrink-0">
             <Sparkles size={16} />
           </div>
-          <div className="text-xs sm:text-sm text-black/90 dark:text-white/90">
+          <div className="text-xs sm:text-sm text-neutral-900 dark:text-white">
             <strong>The Demo-First Guarantee:</strong> You never pay in full until you test a functional, live staging preview.
           </div>
         </div>
@@ -117,7 +117,7 @@ export default function HowItWorksTimeline() {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           onClick={() => setIsConsultationOpen(true)}
-          className="px-4 py-1.5 rounded-full bg-neutral-400 text-black font-semibold text-xs hover:bg-neutral-400 transition-colors shrink-0 shadow-md shadow-neutral-400"
+          className="px-4 py-1.5 rounded-full bg-neutral-900 dark:bg-white text-white dark:text-neutral-950 font-semibold text-xs hover:bg-black dark:hover:bg-neutral-200 transition-colors shrink-0 shadow-md cursor-pointer"
         >
           Start with ₹3k Advance
         </motion.button>
@@ -131,11 +131,11 @@ export default function HowItWorksTimeline() {
             whileHover={{ y: -2 }}
             whileTap={{ scale: 0.98 }}
             onClick={() => setActiveStep(idx)}
-            className={`p-3 rounded-2xl border text-left transition-all flex flex-col justify-between ${
+            className={`p-3 rounded-2xl border text-left transition-all flex flex-col justify-between cursor-pointer ${
               activeStep === idx
-                ? "bg-white text-black border-black dark:border-white shadow-lg shadow-white/20"
+                ? "bg-black dark:bg-white text-white dark:text-black border-black dark:border-white shadow-lg"
                 : step.highlight
-                ? "bg-neutral-400 border-neutral-400 text-black dark:text-white hover:bg-neutral-400"
+                ? "bg-emerald-500/10 dark:bg-emerald-500/15 border-emerald-500/30 text-emerald-800 dark:text-emerald-300"
                 : "bg-black/5 dark:bg-white/5 border-black/10 dark:border-white/10 text-black/70 dark:text-white/70 hover:bg-black/10 dark:hover:bg-white/10 hover:text-black dark:text-white"
             }`}
           >
@@ -224,7 +224,7 @@ export default function HowItWorksTimeline() {
                 <div
                   className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 font-mono text-xs font-bold ${
                     isCurrent
-                      ? "bg-neutral-400 text-black shadow-md shadow-neutral-400"
+                      ? "bg-black dark:bg-white text-white dark:text-black shadow-md"
                       : "bg-black/10 dark:bg-white/10 text-black/80 dark:text-white/80"
                   }`}
                 >

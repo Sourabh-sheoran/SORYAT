@@ -180,12 +180,12 @@ function ContactPageContent() {
               </div>
 
               {/* Advance highlight notice */}
-              <div className="p-4 rounded-2xl bg-neutral-400 border border-neutral-400 text-xs text-black/80 dark:text-white/80 flex items-center justify-between gap-3">
+              <div className="p-4 rounded-2xl bg-emerald-500/10 dark:bg-emerald-500/15 border border-emerald-500/25 dark:border-emerald-500/30 text-xs text-neutral-900 dark:text-white flex items-center justify-between gap-3">
                 <div className="flex items-center gap-2">
-                  <ShieldCheck size={16} className="text-neutral-600 dark:text-neutral-400" />
+                  <ShieldCheck size={16} className="text-emerald-600 dark:text-emerald-400 shrink-0" />
                   <span>Only <strong>low advance</strong> to begin development.</span>
                 </div>
-                <span className="font-mono text-[10px] text-neutral-600 dark:text-neutral-400">
+                <span className="font-mono text-[10px] font-bold px-2.5 py-1 rounded-full bg-emerald-500/15 dark:bg-emerald-400/20 text-emerald-800 dark:text-emerald-300 border border-emerald-500/30 dark:border-emerald-400/40 shrink-0">
                   Refundable/Adjustable
                 </span>
               </div>
@@ -208,7 +208,7 @@ function ContactPageContent() {
             </form>
           ) : (
             <div className="text-center py-12 flex flex-col items-center">
-              <div className="w-16 h-16 rounded-full bg-neutral-400 border border-neutral-400 flex items-center justify-center text-neutral-600 dark:text-neutral-400 mb-4 animate-bounce">
+              <div className="w-16 h-16 rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-600 dark:text-emerald-400 mb-4 animate-bounce">
                 <CheckCircle2 size={36} />
               </div>
               <h3 className="text-2xl font-medium text-black dark:text-white mb-2">
@@ -237,16 +237,16 @@ function ContactPageContent() {
               href="https://wa.me/918708248561?text=Hi%20Nova%20Studio%2C%20I%20want%20to%20start%20a%20demo-first%20project"
               target="_blank"
               rel="noreferrer"
-              className="p-4 rounded-2xl bg-neutral-400 border border-neutral-400 hover:bg-neutral-400 transition-all flex items-center justify-between group cursor-pointer"
+              className="p-4 rounded-2xl bg-emerald-500/10 dark:bg-emerald-500/15 border border-emerald-500/25 dark:border-emerald-500/30 hover:bg-emerald-500/20 dark:hover:bg-emerald-500/25 transition-all flex items-center justify-between group cursor-pointer"
             >
-              <div className="flex items-center gap-3 text-neutral-600 dark:text-neutral-400">
+              <div className="flex items-center gap-3 text-emerald-600 dark:text-emerald-400">
                 <MessageSquare size={18} />
                 <div>
-                  <div className="text-xs font-semibold text-black dark:text-white">WhatsApp Fast Track</div>
-                  <div className="text-[11px] text-neutral-600 dark:text-neutral-400 font-mono">+91 8708248561</div>
+                  <div className="text-xs font-semibold text-neutral-900 dark:text-white">WhatsApp Fast Track</div>
+                  <div className="text-[11px] text-emerald-700 dark:text-emerald-300 font-mono">+91 8708248561</div>
                 </div>
               </div>
-              <ArrowRight size={14} className="text-neutral-600 dark:text-neutral-400 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight size={14} className="text-emerald-600 dark:text-emerald-400 group-hover:translate-x-1 transition-transform" />
             </a>
 
             <a

@@ -86,7 +86,7 @@ export default function InteractiveConsultationModal() {
           <div>
             {/* Header */}
             <div className="mb-6">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-neutral-400 border border-neutral-400 text-neutral-600 dark:text-neutral-400 font-mono text-[11px] uppercase tracking-wider mb-2">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 dark:bg-emerald-500/15 border border-emerald-500/25 dark:border-emerald-500/30 text-emerald-700 dark:text-emerald-300 font-mono text-[11px] uppercase tracking-wider mb-2">
                 <Sparkles size={13} />
                 <span>Demo-First Project Kickoff</span>
               </div>
@@ -228,7 +228,7 @@ export default function InteractiveConsultationModal() {
           </div>
         ) : (
           <div className="text-center py-8 flex flex-col items-center">
-            <div className="w-16 h-16 rounded-full bg-neutral-400 border border-neutral-400 flex items-center justify-center text-neutral-600 dark:text-neutral-400 mb-4 animate-bounce">
+            <div className="w-16 h-16 rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-600 dark:text-emerald-400 mb-4 animate-bounce">
               <CheckCircle2 size={36} />
             </div>
             <h3 className="text-2xl font-medium text-black dark:text-white mb-2">
