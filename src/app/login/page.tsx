@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useAgency } from "@/context/AgencyContext";
+import SoryatLogo from "@/components/SoryatLogo";
 
 // Falcon video — exact URL from login page template
 const FALCON_VIDEO_URL =
@@ -203,11 +204,11 @@ export default function LoginPage() {
           overflow-y: auto;
           overflow-x: hidden;
           display: flex;
-          background: #f4f5f7;
+          background: #e7e7e9;
           transition: background-color 0.3s ease;
         }
         .dark .login-page-stage {
-          background: #080a0f;
+          background: #000000;
         }
 
         /* ── Left photo/video column ── */
@@ -553,6 +554,16 @@ export default function LoginPage() {
           {/* Scrim for contrast */}
           <div className="login-photo-scrim" />
 
+          {/* Top Logo / Home Link */}
+          <div style={{ position: "absolute", top: "28px", left: "28px", zIndex: 20 }}>
+            <Link href="/" style={{ display: "inline-flex", alignItems: "center", gap: "8px", textDecoration: "none" }} className="hover:opacity-85 transition-opacity">
+              <SoryatLogo className="h-7 w-auto" />
+              <span style={{ fontSize: "10px", fontFamily: "monospace", padding: "2px 8px", borderRadius: "999px", background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.2)", color: "#fff" }}>
+                CLIENT PORTAL
+              </span>
+            </Link>
+          </div>
+
           {/* Hero copy overlay */}
           <div className="login-hero" aria-hidden="true">
             <div ref={badgeRef} className="login-badge">
@@ -570,6 +581,14 @@ export default function LoginPage() {
 
         {/* ── RIGHT: Pane / Login Card ──────────────────────────────────────── */}
         <section className="login-pane">
+          <div className="lg:hidden flex items-center justify-between w-full max-w-[480px] mb-4 px-2">
+            <Link href="/" className="inline-flex items-center gap-2">
+              <SoryatLogo className="h-7 w-auto" />
+            </Link>
+            <Link href="/signup" className="text-xs font-mono text-neutral-500 dark:text-neutral-400 hover:text-black dark:hover:text-white">
+              Sign up →
+            </Link>
+          </div>
           <div ref={cardRef} className="card">
             <div className="card-in">
               <h1 ref={h1Ref} className="login-h1">Welcome Back!</h1>

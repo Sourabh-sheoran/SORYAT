@@ -159,10 +159,6 @@ export default function Footer() {
                 <MessageSquare size={14} className="shrink-0" />
                 <span>WhatsApp: +91 8708248561</span>
               </a>
-              <div className="flex items-center gap-2 text-[11px] text-black/50 dark:text-white/50 pt-1">
-                <Clock size={12} className="text-black/40 dark:text-white/40" />
-                <span>24/7 Dedicated Client Support</span>
-              </div>
             </div>
           </div>
         </div>

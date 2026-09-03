@@ -80,7 +80,7 @@ export default function Home() {
   };
 
   return (
-    <main className="relative min-h-screen bg-neutral-50 dark:bg-transparent selection:bg-black/10 dark:selection:bg-white/20">
+    <main className="relative min-h-screen bg-[#e7e7e9] dark:bg-transparent selection:bg-black/10 dark:selection:bg-white/20">
       
       {/* ── CINEMATIC VIDEO BACKGROUND ─────────────────────────────────────── */}
       <ScrollScrubVideo />
@@ -224,9 +224,9 @@ export default function Home() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════════════
-          SECTION 8 — TESTIMONIALS
+          SECTION 8 — TESTIMONIALS (Full-Width Edge-to-Edge Stream)
           ═══════════════════════════════════════════════════════════════════════ */}
-      <section className="relative py-20 px-5 sm:px-8 md:px-12 max-w-7xl mx-auto z-10">
+      <section className="relative py-16 w-full z-10 overflow-hidden px-0">
         <TestimonialsMarquee />
       </section>
 

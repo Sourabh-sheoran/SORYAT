@@ -17,6 +17,7 @@ import {
   Check,
 } from "lucide-react";
 import { useAgency } from "@/context/AgencyContext";
+import SoryatLogo from "@/components/SoryatLogo";
 
 // Falcon video asset
 const FALCON_VIDEO_URL =
@@ -130,82 +131,87 @@ export default function SignUpPage() {
   ];
 
   return (
-    <div className="min-h-screen w-full flex flex-col lg:flex-row bg-[#08090c] text-white selection:bg-white/20 selection:text-white">
+    <div className="min-h-screen w-full flex flex-col lg:flex-row bg-black text-white selection:bg-white/20 selection:text-white">
       
       {/* ── LEFT COLUMN: Cinematic Video & Brand Value ────────────────────── */}
-      <div className="lg:w-1/2 relative hidden lg:flex flex-col justify-between p-12 overflow-hidden bg-black">
-        {/* Background Video */}
+      <div className="lg:w-1/2 relative hidden lg:flex flex-col justify-between p-8 sm:p-12 overflow-hidden bg-black">
+        {/* Background Video — high opacity, framed so falcon is clearly visible */}
         <video
           autoPlay
           loop
           muted
           playsInline
-          className="absolute inset-0 w-full h-full object-cover opacity-65"
+          className="absolute inset-0 w-full h-full object-cover object-[center_35%] opacity-90"
           src={FALCON_VIDEO_URL}
         />
-        {/* Gradients */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent to-[#08090c]" />
+        {/* Gradients to blend seamlessly into black background */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-black pointer-events-none" />
 
         {/* Top Header */}
         <div className="relative z-10">
-          <Link href="/" className="inline-flex items-center gap-2 text-white text-lg font-semibold tracking-wider">
-            <span>SORYAT</span>
+          <Link href="/" className="inline-flex items-center gap-2.5 text-white hover:opacity-85 transition-opacity">
+            <SoryatLogo className="h-7 w-auto" />
             <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-white/10 border border-white/20 text-white/80">
               CLIENT PORTAL
             </span>
           </Link>
         </div>
 
-        {/* Bottom Hero Pitch */}
-        <div className="relative z-10 max-w-lg space-y-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/15 backdrop-blur-md text-xs font-mono text-white/90">
-            <ShieldCheck size={14} className="text-emerald-400" />
+        {/* Bottom Hero Pitch — Compact so it never hides the falcon animation */}
+        <div className="relative z-10 max-w-md space-y-2.5 pb-2">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/60 border border-white/20 backdrop-blur-md text-[11px] font-mono text-white/90 shadow-lg">
+            <ShieldCheck size={13} className="text-emerald-400" />
             <span>Email-Verified Client Registration</span>
           </div>
 
           <h1
-            className="text-4xl sm:text-5xl font-normal leading-tight tracking-tight text-white"
+            className="text-2xl sm:text-3xl lg:text-4xl font-normal leading-tight tracking-tight text-white"
             style={{ fontFamily: "var(--font-instrument), serif" }}
           >
             Create Your Account. <br />
-            Experience Demo-First Delivery.
+            <span className="text-neutral-300 text-xl sm:text-2xl lg:text-3xl">
+              Experience Demo-First Delivery.
+            </span>
           </h1>
 
-          <p className="text-sm sm:text-base text-neutral-300 leading-relaxed">
-            Join founders, researchers, and enterprises across India, Canada, and global markets. Zero risk with our working demo guarantee.
+          <p className="text-xs sm:text-sm text-neutral-300 leading-relaxed max-w-sm">
+            Join founders, researchers, and enterprises across India, Canada, and global markets.
           </p>
 
-          {/* Value props */}
-          <div className="grid grid-cols-2 gap-3 pt-2 text-xs font-mono text-neutral-400">
-            <div className="flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-              <span>Free Revisions</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-              <span>1–2 Week Delivery</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-              <span>Low Advance Demo</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-              <span>NDA Protected</span>
-            </div>
+          {/* Value props — sleek compact tags */}
+          <div className="flex flex-wrap gap-2 pt-1 text-[10px] font-mono text-neutral-200">
+            <span className="px-2.5 py-1 rounded-full bg-black/60 border border-white/15 backdrop-blur-sm flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" /> Free Revisions
+            </span>
+            <span className="px-2.5 py-1 rounded-full bg-black/60 border border-white/15 backdrop-blur-sm flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" /> 1–2 Wk Delivery
+            </span>
+            <span className="px-2.5 py-1 rounded-full bg-black/60 border border-white/15 backdrop-blur-sm flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" /> Low Advance
+            </span>
           </div>
         </div>
 
         {/* Copyright */}
-        <div className="relative z-10 text-[11px] text-neutral-500 font-mono">
+        <div className="relative z-10 text-[10px] text-neutral-500 font-mono">
           © {new Date().getFullYear()} SORYAT DIGITAL EXCELLENCE. All rights reserved.
         </div>
       </div>
 
       {/* ── RIGHT COLUMN: Multi-Step Sign-up Form ─────────────────────────── */}
-      <div className="lg:w-1/2 min-h-screen flex items-center justify-center p-6 sm:p-10 md:p-16 relative">
-        <div className="w-full max-w-xl bg-white/90 dark:bg-[#0f1117]/90 border border-black/10 dark:border-white/10 rounded-3xl p-6 sm:p-10 backdrop-blur-2xl shadow-2xl relative">
+      <div className="lg:w-1/2 min-h-screen flex flex-col items-center justify-center p-6 sm:p-10 md:p-16 relative bg-black">
+        {/* Mobile Header */}
+        <div className="w-full max-w-xl lg:hidden flex items-center justify-between mb-6">
+          <Link href="/" className="inline-flex items-center gap-2">
+            <SoryatLogo className="h-7 w-auto" />
+          </Link>
+          <Link href="/login" className="text-xs font-mono text-neutral-400 hover:text-white">
+            Log in →
+          </Link>
+        </div>
+
+        <div className="w-full max-w-xl bg-white/95 dark:bg-[#111116]/95 border border-black/10 dark:border-white/10 rounded-3xl p-6 sm:p-10 backdrop-blur-2xl shadow-2xl relative">
           
           {/* Header Progress Indicators */}
           {step < 3 && (

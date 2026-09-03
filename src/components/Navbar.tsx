@@ -1,9 +1,24 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Globe, Menu, X, ChevronDown, ArrowUpRight, ShieldCheck, Sun, Moon } from "lucide-react";
+import {
+  Globe,
+  Menu,
+  X,
+  ChevronDown,
+  ArrowUpRight,
+  ShieldCheck,
+  Sun,
+  Moon,
+  Code2,
+  Bot,
+  TrendingUp,
+  GraduationCap,
+  PenTool,
+  ArrowRight,
+} from "lucide-react";
 import { useTheme } from "next-themes";
 import { useAgency, Currency } from "@/context/AgencyContext";
 import ThemeToggle from "@/components/ThemeToggle";
@@ -27,12 +42,29 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const isAuthPage = pathname === "/login" || pathname === "/signup";
   const useThemeColors = true;
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setMounted(true);
-    const handleScroll = () => setScrolled(window.scrollY > 20);
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+      // Non-sticky behavior: immediately close the dropdown on scroll so it never sticks over content
+      setServicesDropdownOpen(false);
+    };
+
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setServicesDropdownOpen(false);
+      }
+    };
+
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
   }, []);
 
   const navLinks = [
@@ -44,18 +76,53 @@ export default function Navbar() {
   ];
 
   const serviceSublinks = [
-    { name: "Full-Stack Web Development", href: "/services/web-development", tag: "From ₹15k" },
-    { name: "AI Agent Development", href: "/services/ai-agents", tag: "Custom" },
-    { name: "SEO & Growth Marketing", href: "/services/seo", tag: "From ₹5k/mo" },
-    { name: "Research Papers", href: "/services/research-papers", tag: "₹10k–₹30k" },
-    { name: "Content Writing", href: "/services/content-analytics", tag: "₹2k/1k words" },
+    {
+      name: "Full-Stack Web Development",
+      href: "/services/web-development",
+      desc: "Next.js, React, Mobile Apps & Platforms",
+      tag: "From ₹15k",
+      icon: Code2,
+      color: "text-blue-600 dark:text-blue-400 bg-blue-500/10 border-blue-500/20",
+    },
+    {
+      name: "AI Agent Development",
+      href: "/services/ai-agents",
+      desc: "Autonomous LLM tools, workflows & agents",
+      tag: "Custom",
+      icon: Bot,
+      color: "text-purple-600 dark:text-purple-400 bg-purple-500/10 border-purple-500/20",
+    },
+    {
+      name: "SEO & Growth Marketing",
+      href: "/services/seo",
+      desc: "Sub-second speed, organic traffic & rankings",
+      tag: "From ₹5k/mo",
+      icon: TrendingUp,
+      color: "text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 border-emerald-500/20",
+    },
+    {
+      name: "Research Papers",
+      href: "/services/research-papers",
+      desc: "IEEE, Springer & Scopus academic publication",
+      tag: "₹10k–₹30k",
+      icon: GraduationCap,
+      color: "text-amber-600 dark:text-amber-400 bg-amber-500/10 border-amber-500/20",
+    },
+    {
+      name: "Content Writing",
+      href: "/services/content-analytics",
+      desc: "Technical blogs, landing copy & conversions",
+      tag: "₹2k/1k words",
+      icon: PenTool,
+      color: "text-rose-600 dark:text-rose-400 bg-rose-500/10 border-rose-500/20",
+    },
   ];
 
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled || isAuthPage
-          ? "bg-white/85 dark:bg-black/85 backdrop-blur-xl border-b border-black/10 dark:border-white/10 shadow-sm"
+          ? "bg-white/90 dark:bg-black/90 backdrop-blur-xl border-b border-neutral-200/80 dark:border-white/10 shadow-sm"
           : "bg-transparent"
       }`}
     >
@@ -77,41 +144,90 @@ export default function Navbar() {
               return (
                 <div
                   key={link.name}
+                  ref={dropdownRef}
                   className="relative"
                   onMouseEnter={() => setServicesDropdownOpen(true)}
                   onMouseLeave={() => setServicesDropdownOpen(false)}
                 >
-                  <button className={`flex items-center gap-1 text-sm font-medium transition-colors ${
-                  useThemeColors ? "text-black/70 dark:text-white/70 hover:text-black dark:hover:text-white" : "text-white/70 hover:text-white"
-                } py-1 focus:outline-none`}>
-                    {link.name}
+                  <button
+                    type="button"
+                    onClick={() => setServicesDropdownOpen((prev) => !prev)}
+                    className={`flex items-center gap-1.5 text-sm font-semibold transition-colors cursor-pointer ${
+                      useThemeColors
+                        ? "text-neutral-700 dark:text-neutral-200 hover:text-black dark:hover:text-white"
+                        : "text-white/80 hover:text-white"
+                    } py-1 focus:outline-none`}
+                  >
+                    <span>{link.name}</span>
                     <ChevronDown
                       size={13}
-                      className={`transition-transform duration-200 ${useThemeColors ? "text-black/50 dark:text-white/50" : "text-white/50"} ${servicesDropdownOpen ? "rotate-180" : ""}`}
+                      className={`transition-transform duration-200 ${
+                        servicesDropdownOpen ? "rotate-180 text-blue-600 dark:text-blue-400" : "text-neutral-400"
+                      }`}
                     />
                   </button>
 
+                  {/* Enhanced Dropdown Panel */}
                   {servicesDropdownOpen && (
-                    <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-72 p-1.5 rounded-2xl bg-white/95 dark:bg-[#111]/95 backdrop-blur-2xl border border-black/10 dark:border-white/10 shadow-2xl shadow-black/10 dark:shadow-black/80">
-                      <div className="px-3 py-2 border-b border-black/10 dark:border-white/10 mb-1 flex items-center justify-between">
-                        <span className="text-xs text-black/50 dark:text-white/50">Services</span>
-                        <span className="flex items-center gap-1 text-[11px] text-neutral-600 dark:text-neutral-400">
-                          <ShieldCheck size={11} />
-                          Demo-First
-                        </span>
-                      </div>
-                      {serviceSublinks.map((sub) => (
-                        <Link
-                          key={sub.name}
-                          href={sub.href}
-                          onClick={() => setServicesDropdownOpen(false)}
-                          className="flex items-center px-3 py-2.5 rounded-xl hover:bg-black/8 dark:hover:bg-white/8 transition-colors group"
-                        >
-                          <span className="text-sm text-black/85 dark:text-white/85 group-hover:text-black dark:text-white transition-colors">
-                            {sub.name}
+                    <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 w-96 z-50 animate-in fade-in zoom-in-95 duration-150">
+                      <div className="p-2.5 rounded-2xl bg-white/95 dark:bg-[#111116]/95 backdrop-blur-2xl border border-neutral-200 dark:border-white/15 shadow-2xl shadow-black/15 dark:shadow-black/80">
+                        {/* Header bar */}
+                        <div className="px-3 py-2 border-b border-neutral-200/80 dark:border-white/10 mb-1.5 flex items-center justify-between">
+                          <span className="text-xs font-mono uppercase tracking-wider text-neutral-500 dark:text-neutral-400 font-bold">
+                            Core Engineering Practices
                           </span>
-                        </Link>
-                      ))}
+                          <span className="flex items-center gap-1 text-[11px] font-mono text-emerald-600 dark:text-emerald-400 font-bold px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20">
+                            <ShieldCheck size={11} />
+                            Demo-First ₹3k
+                          </span>
+                        </div>
+
+                        {/* Enhanced Service links with icons and pricing */}
+                        <div className="space-y-1">
+                          {serviceSublinks.map((sub) => {
+                            const IconComponent = sub.icon;
+                            return (
+                              <Link
+                                key={sub.name}
+                                href={sub.href}
+                                onClick={() => setServicesDropdownOpen(false)}
+                                className="flex items-center justify-between gap-3 p-2.5 rounded-xl hover:bg-neutral-100 dark:hover:bg-white/10 transition-colors group"
+                              >
+                                <div className="flex items-center gap-3 min-w-0">
+                                  <div className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 border ${sub.color}`}>
+                                    <IconComponent size={15} />
+                                  </div>
+                                  <div className="min-w-0">
+                                    <div className="text-xs font-bold text-neutral-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors truncate">
+                                      {sub.name}
+                                    </div>
+                                    <div className="text-[10px] text-neutral-500 dark:text-neutral-400 truncate">
+                                      {sub.desc}
+                                    </div>
+                                  </div>
+                                </div>
+                                <span className="font-mono text-[10px] font-bold px-2 py-0.5 rounded-md bg-neutral-100 dark:bg-white/10 text-neutral-700 dark:text-neutral-300 border border-neutral-200 dark:border-white/10 shrink-0">
+                                  {sub.tag}
+                                </span>
+                              </Link>
+                            );
+                          })}
+                        </div>
+
+                        {/* Bottom CTA footer in dropdown */}
+                        <div className="mt-1.5 pt-2 border-t border-neutral-200/80 dark:border-white/10 px-2">
+                          <button
+                            onClick={() => {
+                              setServicesDropdownOpen(false);
+                              setIsConsultationOpen(true);
+                            }}
+                            className="w-full py-2 px-3 rounded-xl bg-neutral-900 dark:bg-white text-white dark:text-neutral-950 text-xs font-bold flex items-center justify-center gap-1.5 hover:bg-black dark:hover:bg-neutral-200 transition-colors cursor-pointer"
+                          >
+                            <span>Kickstart Any Project with ₹3,000</span>
+                            <ArrowRight size={12} />
+                          </button>
+                        </div>
+                      </div>
                     </div>
                   )}
                 </div>

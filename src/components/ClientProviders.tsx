@@ -19,7 +19,7 @@ export default function ClientProviders({
   return (
     <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
       <AgencyProvider>
-        <Navbar />
+        {!isAuthPage && <Navbar />}
         <div className="flex-1 w-full flex flex-col">{children}</div>
         {!isAuthPage && <Footer />}
         <LoginModal />
